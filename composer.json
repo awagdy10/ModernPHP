@@ -1,0 +1,11 @@
+{
+    "name": "wagdy/modernphp",
+    "description": "Modern PHP installation.",
+    "type": "project",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "ModernPHP\\": "src/"
+        }
+    }
+}
