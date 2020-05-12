@@ -11,8 +11,6 @@ services:
     working_dir: /var/www/
     volumes:
       - ./:/var/www
-    networks:
-      - modernphp
 
   nginx:
     image: nginx:1.17-alpine
@@ -22,23 +20,19 @@ services:
     volumes:
       - ./:/var/www
       - ./docker-compose/nginx:/etc/nginx/conf.d
-    networks:
-     - modernphp
 
   db:
    image: mysql:5.7
    restart: unless-stopped
    environment:
      MYSQL_DATABASE: modernphp
-     MYSQL_ROOT_PASSWORD: 123456$Aa
+     MYSQL_ROOT_PASSWORD: root
      SERVICE_TAGS: dev
      SERVICE_NAME: mysql
    ports:
     - '3306:3306'
    volumes:
      - ./docker-compose/db_data:/var/lib/mysql
-   networks:
-    - modernphp
 
 
   phpmyadmin:
@@ -50,8 +44,3 @@ services:
      - '8040:80'
    environment:
      PMA_HOST: db
-   networks:
-    - modernphp
-
-networks:
-  modernphp:

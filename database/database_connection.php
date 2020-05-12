@@ -3,9 +3,9 @@
 class DataBase_Class 
 {
  
-    private $host      = '172.28.0.1';
-    private $username  = 'wagdy';
-    private $password  = '123456$Aa';
+    private $host      = '172.19.0.1';
+    private $username  = 'root';
+    private $password  = 'root';
     private $db_name   = 'modernphp';
 
     private static $instance;
