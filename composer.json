@@ -3,7 +3,11 @@
     "description": "Modern PHP installation.",
     "type": "project",
     "require": {
-        "php-di/php-di": "^6.1"
+        "php-di/php-di": "^6.1",
+        "relay/relay": "^2.1",
+        "laminas/laminas-diactoros": "^2.3",
+        "middlewares/fast-route": "^2.0",
+        "middlewares/request-handler": "^2.0"
     },
     "autoload": {
         "psr-4": {

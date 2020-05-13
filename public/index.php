@@ -3,7 +3,15 @@
 
 use DI\ContainerBuilder;
 use ModernPHP\HelloWorld;
+use FastRoute\RouteCollector;
+use Middlewares\FastRoute;
+use Middlewares\RequestHandler;
+use Relay\Relay;
+use Laminas\Diactoros\Response;
+use Laminas\Diactoros\ServerRequestFactory;
 use function DI\create;
+use function DI\get;
+use function FastRoute\simpleDispatcher;
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
@@ -21,8 +29,18 @@ $containerBuilder->addDefinitions([
 
 $container = $containerBuilder->build();
 
-$helloWorld = $container->get(HelloWorld::class);
+$routes = simpleDispatcher(function (RouteCollector $r) {
+    $r->get('/hello', HelloWorld::class);
+});
 
-$helloWorld->announce();
+$middlewareQueue = [];
+
+$middlewareQueue[] = new FastRoute($routes);
+$middlewareQueue[] = new RequestHandler($container);
+
+$requestHandler = new Relay($middlewareQueue);
+$response = $requestHandler->handle(ServerRequestFactory::fromGlobals());
+
+
 
 ?>
