@@ -2,7 +2,9 @@
     "name": "wagdy/modernphp",
     "description": "Modern PHP installation.",
     "type": "project",
-    "require": {},
+    "require": {
+        "php-di/php-di": "^6.1"
+    },
     "autoload": {
         "psr-4": {
             "ModernPHP\\": "src/"
