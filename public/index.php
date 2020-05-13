@@ -1,9 +1,14 @@
 <?php 
 
+
+use DI\ContainerBuilder;
+use ModernPHP\HelloWorld;
+use function DI\create;
+
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 
-$containerBuilder = new \DI\ContainerBuilder();
+$containerBuilder = new ContainerBuilder();
 
 // For using a smiple container
 $containerBuilder->useAutowiring(false);
@@ -11,12 +16,12 @@ $containerBuilder->useAnnotations(false);
 
 // For the use of the simple container, we have to define the injections ourselves
 $containerBuilder->addDefinitions([
-    \ModernPHP\HelloWorld::class => \DI\create(\ModernPHP\HelloWorld::class)
+    HelloWorld::class => create(HelloWorld::class)
 ]);
 
 $container = $containerBuilder->build();
 
-$helloWorld = $container->get(\ModernPHP\HelloWorld::class);
+$helloWorld = $container->get(HelloWorld::class);
 
 $helloWorld->announce();
 
