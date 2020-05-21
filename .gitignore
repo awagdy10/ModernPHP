@@ -1,5 +1,2 @@
-# Docker files
-docker-compose/*
-
-
+docker-compose/db_data/*
 vendor
